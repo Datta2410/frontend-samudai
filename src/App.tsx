@@ -5,14 +5,13 @@ import Dashboard from './pages/Dashboard';
 import Stats from './pages/Stats';
 
 function App() {
-  
   return (
     <div className="App">
       <BrowserRouter>
         <Routes>
-          <Route path='/' element={<Stats/>}/>
-          <Route path='/dashboard' element={<Dashboard/>}/>
-          <Route path='/stats' element={<Stats/>}/>
+          <Route path='/' element={<Stats />} />
+          <Route path='/dashboard' element={<Dashboard />} />
+          <Route path='/stats' element={<Stats />} />
         </Routes>
       </BrowserRouter>
     </div>

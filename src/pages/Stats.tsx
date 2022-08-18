@@ -92,11 +92,11 @@ const Stats = () => {
                                 {txns.map((txn: any, index: number) => {
                                     return (
                                         <Card key={index} className='w-full items-start'>
-                                            <div>Hash: <a target='_blank' rel='noreferrer' href={`https://etherscan.io/tx/${txn?.hash}`}>{txn?.hash?.substr(0, 30)}.....</a></div>
-                                            {/* <div>From: {txn?.from?.substr(0, 30)}.....</div>
-                                    <div>To: {txn?.to?.substr(0, 30)}...</div>
-                                    <div>Timestamp: {txn?.timeStamp}</div>
-                                    <div>BlockNumber: {txn?.blockNumber}</div>  */}
+                                            <div>Hash: <a className='no-underline hover:underline' target='_blank' rel='noreferrer' href={`https://etherscan.io/tx/${txn?.hash}`}>{txn?.hash?.substr(0, 30)}.....</a></div>
+                                            <div>From: {txn?.from?.substr(0, 30)}.....</div>
+                                            <div>To: {txn?.to?.substr(0, 30)}...</div>
+                                            <div>Timestamp: {txn?.timeStamp}</div>
+                                            <div>BlockNumber: {txn?.blockNumber}</div>
                                         </Card>
                                     )
                                 })}
