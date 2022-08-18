@@ -38,7 +38,6 @@ const Stats = () => {
         // @ts-ignore
         const { ethereum } = window
         if (ethereum) {
-            console.log(ethereum.networkVersion)
             // @ts-ignore
             window.ethereum.request({ method: 'eth_requestAccounts' })
                 // @ts-ignore

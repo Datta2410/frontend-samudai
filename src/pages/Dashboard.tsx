@@ -46,17 +46,19 @@ const Dashboard = () => {
         fetch("https://www.googleapis.com/calendar/v3/calendars/primary/events", requestOptions)
             .then(response => response.json())
             .then(result => {
-                console.log(result?.items[30])
-                setCalendarEvents(result?.items?.map((event: any) => {
-                    return {
-                        creator: event?.creator?.email,
-                        end: new Date(event?.end?.dateTime).toString().substr(0, 24),
-                        start: new Date(event?.start?.dateTime).toString().substr(0, 24),
-                        status: event?.status,
-                        htmlLink: event?.htmlLink,
-                        summary: event?.summary
+                const events = result?.items?.map((event: any) => {
+                    if(new Date() < new Date(event?.start?.date || event?.start?.dateTime)) {
+                        return {
+                            creator: event?.creator?.email,
+                            end: new Date(event?.end?.date || event?.end?.dateTime).toString().substring(0, 24),
+                            start: new Date(event?.start?.date || event?.start?.dateTime).toString().substring(0, 24),
+                            status: event?.status,
+                            htmlLink: event?.htmlLink,
+                            summary: event?.summary
+                        }
                     }
-                }))
+                }).filter((event: any) => event !== undefined)
+                setCalendarEvents(events)
             })
             .catch(error => console.log('error', error));
     }, [accessToken])
@@ -68,7 +70,7 @@ const Dashboard = () => {
                         onClick={signOut}
                         className='rounded-lg shadow-lg border p-6'
                     >Sign Out</button>
-                    <div className='flex flex-wrap items-center justify-center'>
+                    <div className='flex flex-wrap items-center justify-center w-screen p-6'>
                         {calendarEvents?.length > 0 && calendarEvents?.map((event) => {
                             return (
                                 <Card className='w-full h-48 sm:w-1/2 md:w-1/3 lg:w-1/4'>
